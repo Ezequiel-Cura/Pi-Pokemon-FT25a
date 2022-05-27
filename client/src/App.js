@@ -5,7 +5,6 @@ import {Routes,Route} from 'react-router-dom'
 // COMPONENTES
 import Home from "./components/Home/Home"
 import LandingPage from './components/Landing/LandingPage';
-
 import CreatePokemon from "./components/CreatePokemon/CreatePokemon"
 import DetailPokemon from "./components/DetailPokemon/DetailPokemon"
 

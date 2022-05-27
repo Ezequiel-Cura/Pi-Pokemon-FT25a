@@ -1,0 +1,13 @@
+.pokemonDetail{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.stats{
+  display: flex;
+  flex-direction: column;
+}
+.dimensiones{
+  display: flex;
+  flex-direction: column;
+}

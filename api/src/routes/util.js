@@ -65,40 +65,54 @@ const getAllTypesDb = async()=>{
   return types
 }
 
+const getPokemon = async(id)=>{
+  const thePokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/" + id);
+  const pokeData = thePokemon.data
+  // console.log(pokeData.name)
+  const pokemon= {
+    id:     pokeData.id,
+    name:   pokeData.name,
+    image:  pokeData.sprites.other.home.front_default,
+    type:   pokeData.types.map(t => t.type.name),
+    hp:     pokeData.stats[0].base_stat,
+    attack: pokeData.stats[1].base_stat,
+    defense:pokeData.stats[2].base_stat,
+    speed:  pokeData.stats[5].base_stat,
+    height: pokeData.height, 
+    weight: pokeData.weight
+  }
+  // console.log(pokemon)
+  return pokemon
+}
+
+const getPokeByName = async(name)=>{
+  const pokemonName = await axios("https://pokeapi.co/api/v2/pokemon/" + name);
+  const pokeData = pokemonName.data
+  // console.log(pokeData.name)
+  const pokemon= {
+    id:     pokeData.id,
+    name:   pokeData.name,
+    image:  pokeData.sprites.other.home.front_default,
+    type:   pokeData.types.map(t => t.type.name),
+    hp:     pokeData.stats[0].base_stat,
+    attack: pokeData.stats[1].base_stat,
+    defense:pokeData.stats[2].base_stat,
+    speed:  pokeData.stats[5].base_stat,
+    height: pokeData.height, 
+    weight: pokeData.weight
+  }
+  // console.log(pokemon)
+  return pokemon
+}
+
+
 module.exports = {
   getPokeApi,
   getPokeDb,
   getAllPoke,
   getAllTypesApi,
-  getAllTypesDb
+  getAllTypesDb,
+  getPokemon,
+  getPokeByName
 }
 
-
-
-// const getPokeApi = async () => {
-  
-//   const poke1 = await axios("https://pokeapi.co/api/v2/pokemon")
-//   // const poke1 = fetch("https://pokeapi.co/api/v2/pokemon%22).then(r => r.json())
-//   const poke2 = await axios(poke1.data.next)
-//   // const poke2 = fetch(poke1.data.next).then(r => r.json())
-//   const pokeData = poke1.data.results.concat(poke2.data.results)
-//   // const pokeData = poke1.results.concat(poke2.results) y abajo directamente sacaría la parte de data
-//   console.log("pokeData", pokeData)
-//   const pokemon = await Promise.all(pokeData.map(async poke => {
-//       let pDetail = await axios(poke.url)
-//         return {
-//           id: pDetail.data.id,
-//             name: pDetail.data.name,
-//             image: pDetail.data.sprites.other.home.front_default,
-//             type: pDetail.data.types.map(t => t.type.name),
-//             hp: pDetail.data.stats[0].base_stat,
-//             attack: pDetail.data.stats[1].base_stat,
-//             defense: pDetail.data.stats[2].base_stat,
-//             speed: pDetail.data.stats[5].base_stat,
-//             height: pDetail.data.height, 
-//             weight: pDetail.data.weight
-//       }
-//   }))
-//   return pokemon;
-
-// }
