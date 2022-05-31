@@ -43,6 +43,11 @@ export const getTypes = () => dispatch =>{
 }
 
 export const filterByStatus = (status) =>{
+  // return fetch("http://localhost:3001/pokemons?status=" + status)
+//     .then(respo=>respo.json())
+//     .then(json=>{
+//       dispatch({type:FILTER_BY_STATUS,payload:json})
+//     })
   return {
     type: FILTER_BY_STATUS,payload: status
   }
@@ -68,8 +73,15 @@ export const resetFilters=()=>{
 
 
 
-export const createPokemon = ()=>{
-
+export const createPokemon = async(obj)=>{
+  await fetch("http://localhost:3001/pokemons",{
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(obj)
+  })
 }
 
 export const deletePokemon = ()=>{

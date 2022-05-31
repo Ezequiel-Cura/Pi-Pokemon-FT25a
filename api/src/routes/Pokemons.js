@@ -10,7 +10,6 @@ const router = Router()
 router.post("/",async(req,res)=>{
   const {type} = req.body
   console.log(req.body)
-  
   try {
     const newPoke = await Pokemon.create(req.body)
     const typesDb = await Type.findAll({
@@ -29,13 +28,8 @@ router.get("/",async(req,res)=>{
   try {
     const allPokemons = await getAllPoke()
     if(name){
-      // let pokeName = await allPokemons.filter(el=> el.name.toLowerCase().includes(name.toLowerCase()))
       let pokeName = await getPokeByName(name)
-      if(pokeName) return res.status(200).send(pokeName)
-      // let pokeNameDb = await Pokemon.find({where:{name:name}})
-      // if(pokeNameDb) return res.status(200).send(pokeNameDb)
-      // pokeName ? 
-      // res.status(200).send(pokeName) : 
+      if(pokeName) return res.status(200).send(pokeName) 
       return res.status(404).send("No se encontro ese Pokemon")
     }
     else{

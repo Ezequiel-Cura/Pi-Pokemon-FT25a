@@ -1,5 +1,6 @@
 
-import {GET_ALL_POKEMONS,
+import {
+  GET_ALL_POKEMONS,
   GET_POKEMON,
   GET_POKEMON_BY_NAME,
   GET_TYPES,
@@ -11,7 +12,6 @@ import {GET_ALL_POKEMONS,
 const initialState = {
   pokemons : [],
   filteredPokemons:[],
-  filteredByAZ:[],
   poke : {},
   types:[]
 };
@@ -67,7 +67,7 @@ const rootReducer = (state = initialState,action)=> {
       return{
         ...state,
         filteredPokemons:filterPokemons,
-        filteredByAZ:filterPokemons
+        // pokemons:filterPokemons
       }
     case FILTER_BY_TYPE:    
       let pokeTypes= state.pokemons.map((e)=> e);
@@ -77,17 +77,20 @@ const rootReducer = (state = initialState,action)=> {
       
       return{
         ...state,
-        filteredPokemons: pokeTypes,
-        
+        filteredPokemons: pokeTypes
       }
     case FILTER_BY_API_DB:
       let pokeDb_Api = state.pokemons.map((e)=> e)
-      if(action.payload === "Api"){
+
+      if(action.payload === "Db"){
         pokeDb_Api = state.pokemons.filter(p=> typeof p.id === "string" )
+      }
+      if(action.payload === "Api"){
+        pokeDb_Api = state.pokemons.filter(p=> typeof p.id === "number" )
       }
       return {
         ...state,
-        filterPokemons: pokeDb_Api
+        filteredPokemons: pokeDb_Api
       }
     case RESET_FILTERS:
       return {

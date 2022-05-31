@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch,useSelector} from "react-redux"
 import Nav from "../Nav/Nav"
-import { getAllPokemons,getTypes ,filterByStatus,filterByType,resetFilters} from '../../redux/actions'
+import { getAllPokemons,getTypes ,filterByStatus,filterByType,resetFilters,filterApiDb} from '../../redux/actions'
 import PokemonCard from "../PokemonCard/PokemonCard"
 import Pagination from '../Pagination/Pagination'
 import gif from "../../multimedia/pikachu.gif"
@@ -35,15 +35,15 @@ export default function Home() {
     dispatch(filterByType(e.target.value))
   }
 
-  function handleFilterByApiDb(){
-
+  function handleFilterByApiDb(e){
+    dispatch(filterApiDb(e.target.value))
   }
   function handleReset(e){
     dispatch(resetFilters())
   }
   function handleAllChanges(e){
-    console.log(e.target.name)
-    console.log(e.target.value)
+    // console.log(e.target.name)
+    // console.log(e.target.value)
   }
 
   const indexOfLastPoke = currentPage * pokePerPage;
@@ -53,23 +53,24 @@ export default function Home() {
   // console.log(currentPoke)
   // console.log(currentPoke[0].type.length)
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  // console.log("EL LENGTH",currentPoke.length)
   return (
     <div className='home'>
       <Nav />
       <div className='home_cointainer'>
         <div className='filter_father' onChange={e => handleAllChanges(e)}>
           <h4>Filtros</h4>
-          <select name="ABC" id="" onChange={e => handleFilterByStatus(e)}>
+          <select  name="ABC" onChange={e => handleFilterByStatus(e)}>
             <option value="default">Default</option>
             <option value="asc">A-Z</option>
             <option value="des">Z-A</option>
           </select>
-          <select name="Api_Db" id="" onChange={e => handleFilterByApiDb(e)}>
+          <select name="Api_Db" onChange={e => handleFilterByApiDb(e)}>
             <option value="All">All Pokemon</option>
             <option value="Api">Api Pokemon</option>
             <option value="Db">Db Pokemon</option>
           </select>
-          <select name="poke_types" id="" onChange={e=>{
+          <select name="poke_types" onChange={e=>{
             handleFilterByType(e);
             setCurrentPage(1);
             }}>
@@ -103,15 +104,13 @@ export default function Home() {
                       types={poke.types}
                     />
                   )):
-                    (
-                      <div>
-                        <img src={gif} alt="loading" />
-                        <span>Loading</span>
-                      </div>
-                    )
+                    <div>
+                      <img src={gif} alt="loading" />
+                      <span>Loading</span>
+                    </div>
 
-                
-            
+
+
               }
               
 
