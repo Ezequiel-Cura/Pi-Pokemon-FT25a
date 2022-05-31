@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
-    ID: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
@@ -15,6 +15,7 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
+      defaultValue:"https://w0.peakpx.com/wallpaper/90/124/HD-wallpaper-error-404-error-glitch-modern-new-sharp.jpg"
     },
     hp:{
       type: DataTypes.INTEGER,

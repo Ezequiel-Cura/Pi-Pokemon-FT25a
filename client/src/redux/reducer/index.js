@@ -2,8 +2,6 @@
 import {GET_ALL_POKEMONS,
   GET_POKEMON,
   GET_POKEMON_BY_NAME,
-  CREATE_POKEMON,
-  DELETE_POKEMON,
   GET_TYPES,
   FILTER_BY_STATUS,
   RESET_FILTERS,
@@ -74,7 +72,7 @@ const rootReducer = (state = initialState,action)=> {
     case FILTER_BY_TYPE:    
       let pokeTypes= state.pokemons.map((e)=> e);
       if(action.payload !== "typeDefault"){
-        pokeTypes = state.pokemons.filter((poke)=> poke.type.includes(action.payload))
+        pokeTypes = state.pokemons.filter((poke)=> poke.types.includes(action.payload))
       }
       
       return{

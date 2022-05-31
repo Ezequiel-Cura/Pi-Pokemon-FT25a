@@ -15,7 +15,7 @@ export default function Pagination({pokePerPage,totalPoke,paginate}) {
 
 
   return (
-    <div>
+    <div className='pagination_cointainer'>
       {pageNumbers?.map((num) => (
         <div key={num} onClick={()=>paginate(num)} >
           <span>

@@ -27,7 +27,7 @@ export const getPokemon = (id)=>dispatch=>{
 }
 
 export const getPokemonByName = (name) => dispatch=>{
-  return fetch("http://localhost:3001/pokemons/" + name)
+  return fetch("http://localhost:3001/pokemons?name=" + name)
     .then(res=>res.json())
     .then(json=>{
       dispatch({type:GET_POKEMON_BY_NAME , payload:json})

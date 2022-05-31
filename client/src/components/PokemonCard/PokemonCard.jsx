@@ -10,7 +10,7 @@ export default function PokemonCard(props) {
       <Link to={`/home/` + props.id}>
         {props.name}
       </Link>
-      <div><span>{props.type.length > 0 ? props.type.join(" , "): props.type }</span></div>
+      <div><span >{props.types.length > 0 ? props.types.join(" , ") : props.types }</span></div>
     </div>
   )
 }

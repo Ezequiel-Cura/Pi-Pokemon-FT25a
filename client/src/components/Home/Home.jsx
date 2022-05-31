@@ -11,11 +11,10 @@ export default function Home() {
   const dispatch = useDispatch()
   // let currentPokemons = useSelector(state => state.pokemons)
   const [currentPage,setCurrentPage] = useState(1)
-  const [pokePerPage,setPokePerPage] = useState(12)
-
+  const pokePerPage = 12;
   const currentTypes = useSelector(state=> state.types)
   let filteredPoke = useSelector(state=> state.filteredPokemons)
-
+  // console.log(filteredPoke)
   // if(filteredPoke.length > 0){
   //   currentPokemons = filteredPoke
   // }
@@ -27,6 +26,9 @@ export default function Home() {
 
   function handleFilterByStatus(e){
     dispatch(filterByStatus(e.target.value)) 
+    // console.log("NAME SELECT",e.target.name)
+    // console.log("value SELECT",e.target.value)
+
   }
   function handleFilterByType(e){
     // console.log(e.target.value)
@@ -39,10 +41,14 @@ export default function Home() {
   function handleReset(e){
     dispatch(resetFilters())
   }
+  function handleAllChanges(e){
+    console.log(e.target.name)
+    console.log(e.target.value)
+  }
 
   const indexOfLastPoke = currentPage * pokePerPage;
   const indexOfFirstPoke = indexOfLastPoke - pokePerPage;
-  const currentPoke = filteredPoke.slice(indexOfFirstPoke,indexOfLastPoke)
+  const currentPoke = filteredPoke?.slice(indexOfFirstPoke,indexOfLastPoke)
 
   // console.log(currentPoke)
   // console.log(currentPoke[0].type.length)
@@ -50,60 +56,67 @@ export default function Home() {
   return (
     <div className='home'>
       <Nav />
-
-      <div>
-        <h4>Filtros</h4>
-        <select name="ABC" id="" onChange={e => handleFilterByStatus(e)}>
-          <option value="default">Default</option>
-          <option value="asc">A-Z</option>
-          <option value="des">Z-A</option>
-        </select>
-        <select name="" id="" onChange={e => handleFilterByApiDb(e)}>
-          <option value="All">All Pokemon</option>
-          <option value="Api">Api Pokemon</option>
-          <option value="Db">Db Pokemon</option>
-        </select>
-        <select name="" id="" onChange={e=>handleFilterByType(e)}>
-          <option value="typeDefault">Default</option>
-          {
-            // currentTypes.length > 0 ?
-            currentTypes.map((type)=>(
-              <option value={type.name} key={type.name}>{type.name}</option>
-            ))
-          }
-        </select>
-        <div>
-          <button onClick={e=>handleReset(e)}>Clean filters</button>
-        </div>
-      </div>
-      
-      <Pagination pokePerPage={pokePerPage} totalPoke={filteredPoke.length} paginate={paginate}/>
-      
-      <div>
-       
+      <div className='home_cointainer'>
+        <div className='filter_father' onChange={e => handleAllChanges(e)}>
+          <h4>Filtros</h4>
+          <select name="ABC" id="" onChange={e => handleFilterByStatus(e)}>
+            <option value="default">Default</option>
+            <option value="asc">A-Z</option>
+            <option value="des">Z-A</option>
+          </select>
+          <select name="Api_Db" id="" onChange={e => handleFilterByApiDb(e)}>
+            <option value="All">All Pokemon</option>
+            <option value="Api">Api Pokemon</option>
+            <option value="Db">Db Pokemon</option>
+          </select>
+          <select name="poke_types" id="" onChange={e=>{
+            handleFilterByType(e);
+            setCurrentPage(1);
+            }}>
+            <option value="typeDefault">Default</option>
             {
-              currentPoke.length > 0 ? 
-              currentPoke.map((poke)=>(
-                <PokemonCard 
-                  key={poke.id}
-                  id={poke.id}
-                  name={poke.name}
-                  attack={poke.attack}
-                  image={poke.image}
-                  type={poke.type}
-                />
-              )):
-                (
-                  <div>
-                    <img src={gif} alt="loading" />
-                    <span>Loading</span>
-                  </div>
-                )
-          
+              // currentTypes.length > 0 ?
+              currentTypes.map((type)=>(
+                <option value={type.name} key={type.name}>{type.name}</option>
+              ))
             }
-            
-
+          </select>
+          <div>
+            <button onClick={e=>handleReset(e)}>Clean filters</button>
+          </div>
+        </div>
         
+        <Pagination pokePerPage={pokePerPage} totalPoke={filteredPoke.length} paginate={paginate}/>
+        
+        <div className='pokemon_cointainer'>
+        
+              {
+                
+                  currentPoke.length > 0 ? 
+                  currentPoke?.map((poke)=>(
+                    <PokemonCard 
+                      key={poke.id}
+                      id={poke.id}
+                      name={poke.name}
+                      attack={poke.attack}
+                      image={poke.image}
+                      types={poke.types}
+                    />
+                  )):
+                    (
+                      <div>
+                        <img src={gif} alt="loading" />
+                        <span>Loading</span>
+                      </div>
+                    )
+
+                
+            
+              }
+              
+
+          
+        </div>
       </div>
     </div>
   )
@@ -111,5 +124,5 @@ export default function Home() {
 
 
 // SE ROMPE CUANDO NO ENCUENTRA UN POKEMON POR NAME
-// 
+// Como mostrar los errores que se crean en el back
 // 

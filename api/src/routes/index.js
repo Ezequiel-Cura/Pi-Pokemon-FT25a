@@ -22,7 +22,7 @@ router.get("/types",async(req,res)=>{
       const typesDb = await getAllTypesDb()
       return res.status(200).send(typesDb)
     } catch (error) {
-      return res.send(error)
+      return res.send({error: error.message })
     }
 })
 

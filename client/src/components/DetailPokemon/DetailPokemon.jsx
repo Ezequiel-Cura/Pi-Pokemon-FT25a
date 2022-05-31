@@ -4,13 +4,14 @@ import { useParams } from 'react-router-dom'
 import { getPokemon } from '../../redux/actions'
 import "./DetailPokemon.css"
 import {Link} from "react-router-dom"
+import PikaGif from "../../multimedia/pikachu.gif"
 
 export default function DetailPokemon(props) {
   const {id} = useParams()
   const dispatch = useDispatch()
   const thePokemon = useSelector(state => state.poke)
 
-  // console.log(thePokemon)
+  console.log(thePokemon)
   //  console.log(thePokemon.type.length)
 
   useEffect(()=>{
@@ -22,42 +23,42 @@ export default function DetailPokemon(props) {
       <div>
         <Link to="/home"><button>Volver</button></Link>
       </div>
+      
+        {
+          thePokemon.types ? (
 
-
-      {
-        thePokemon.type ? (
-
-      <div>
-        <div>
-          {thePokemon.id}
-        </div>
-        <div>
-          <img src={thePokemon.image} alt="Pokemon" />
-        </div>
-        <div>
-          <span>{thePokemon.name}</span>
-        </div>
-        <div>
-          {thePokemon.type.length === 1  ? thePokemon.type : thePokemon.type.join(" , ")}
-        </div>
-
-        <div className='dimensiones'>
-          <span>{thePokemon.height}cm</span>
-          <span>{thePokemon.weight}kg</span>
-        </div>
-        <div className='stats'>
-          <span>{thePokemon.speed}</span>
-          <span>{thePokemon.attack}</span>
-          <span>{thePokemon.defense}</span>
-          <span>{thePokemon.hp}</span>
-        </div>
-      </div>    
-        ):(
+        <div className='detail_info'>
           <div>
-            <img src="../../multimedia/pikachu.gif" alt="" />
+            #{thePokemon.id}
           </div>
-        )
-      }
+          <div>
+            <img src={thePokemon.image} alt="Pokemon" />
+          </div>
+          <div>
+            <span>{thePokemon.name}</span>
+          </div>
+          <div>
+            {thePokemon.types.length === 1  ? thePokemon.types : thePokemon.types.join(" , ")}
+          </div>
+
+          <div className='dimensiones'>
+            <span>Height: {thePokemon.height}</span>
+            <span>Weight: {thePokemon.weight}</span>
+          </div>
+          <div className='stats'>
+            <span>Hp: {thePokemon.hp}</span>
+            <span>Speed: {thePokemon.speed}</span>
+            <span>Attack: {thePokemon.attack}</span>
+            <span>Defense: {thePokemon.defense}</span>
+          </div>
+        </div>    
+          ):(
+            <div>
+              <img src={PikaGif} alt="" />
+            </div>
+          )
+        }
+      
     </div>
   )
 }
