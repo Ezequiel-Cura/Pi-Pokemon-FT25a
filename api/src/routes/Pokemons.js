@@ -8,16 +8,22 @@ const router = Router()
 // /pokemons
 
 router.post("/",async(req,res)=>{
-  const {type} = req.body
+  const {types} = req.body
   console.log(req.body)
   try {
+    if(req.body.image === ""){
+      req.body.image = "https://w0.peakpx.com/wallpaper/90/124/HD-wallpaper-error-404-error-glitch-modern-new-sharp.jpg"
+      console.log(req.body)
+
+    }
     const newPoke = await Pokemon.create(req.body)
     const typesDb = await Type.findAll({
-      where:{name:type}
+      where:{name:types}
     })
     newPoke.addTypes(typesDb)
     return res.send({msg: "Pokemon creado"});
   } catch (error) {
+    console.log(error)
     res.status(400).send({error:error.message})
   }
 })

@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
-      defaultValue:"https://w0.peakpx.com/wallpaper/90/124/HD-wallpaper-error-404-error-glitch-modern-new-sharp.jpg"
+      
     },
     hp:{
       type: DataTypes.INTEGER,

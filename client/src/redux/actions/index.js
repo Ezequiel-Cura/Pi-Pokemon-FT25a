@@ -73,15 +73,23 @@ export const resetFilters=()=>{
 
 
 
-export const createPokemon = async(obj)=>{
-  await fetch("http://localhost:3001/pokemons",{
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(obj)
-  })
+export const createPokemon = (obj)=>{
+  console.log(obj)
+  return function(){
+    try {
+      return fetch("http://localhost:3001/pokemons",{
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+      })
+    } catch (error) {
+      console.log(error.message)
+    }
+
+  }
 }
 
 export const deletePokemon = ()=>{
