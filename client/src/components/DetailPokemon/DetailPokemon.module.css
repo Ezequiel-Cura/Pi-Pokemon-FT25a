@@ -1,0 +1,57 @@
+.pokemonDetail{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: white;
+  font-size: larger;
+}
+.stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+.stats div{
+  display: flex;
+  flex-direction: column;
+}
+.dimensiones{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pokeDetail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: brightness(100%);
+}
+.false_background{
+  position: absolute;
+  background-color: black;
+
+  opacity: 50%;
+  width: 50%;
+  height: 100vh;
+  left: 25%;
+}
+.detail_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.detail_info div{
+  margin: 7px;
+}
+
+.info_cointainer{
+  display: flex;
+  justify-content: center;
+}
+.eachInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: larger;
+}

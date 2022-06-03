@@ -1,0 +1,32 @@
+.home{
+  background-image: url("../../multimedia/pokemon-electric-pokemon-raichu-pokemon-wallpaper-thumb.jpg");
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+body{
+  background-color: gray;
+  
+}
+.filter_father{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+}
+.filter_father select{
+  margin: 0 10px 10px 10px;
+}
+.filter_father h4{
+  color: white;
+}
+.pokemon_cointainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.pokemon_cointainer div{
+
+}

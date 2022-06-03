@@ -1,0 +1,22 @@
+.pagination_cointainer{
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    padding: 7px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination{
+    padding: 10px;
+    margin: 3px;
+    height: 20px;
+    width: 20px;
+    border: 1px white solid;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: inherit;
+    cursor: pointer;
+}

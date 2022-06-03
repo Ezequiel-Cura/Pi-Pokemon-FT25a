@@ -1,0 +1,21 @@
+.pokeCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(244, 238, 238);
+    border: 2px red solid;
+    border-radius: 20px;
+    margin: 2rem;
+    max-width: 30rem;
+}
+
+.img_cointainer img{
+    max-width: 30rem;
+    max-height: 37rem;
+}
+.pokeTypes{
+    margin: 5px;
+}
+.pokeAttack{
+    margin-bottom: 5px;
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import styles from "./Pagination.module.css"
+
 export default function Pagination({pokePerPage,totalPoke,paginate}) {
   const pageNumbers = [];
 
@@ -15,9 +17,9 @@ export default function Pagination({pokePerPage,totalPoke,paginate}) {
 
 
   return (
-    <div className='pagination_cointainer'>
+    <div className={styles.pagination_cointainer}>
       {pageNumbers?.map((num) => (
-        <div key={num} onClick={()=>paginate(num)} >
+        <div key={num} onClick={()=>paginate(num)} className={styles.pagination}>
           <span>
             {num} 
           </span>

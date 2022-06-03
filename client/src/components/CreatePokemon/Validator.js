@@ -53,6 +53,12 @@ export default function Validate(input,allPokemons){
     errors.weight = "weight must be between 0 and 200"
   }
 
+  if(!input.image){
+    
+  }else if(!(/(http(s?):)([/|.|\w|\s|-])*.(?:jpg|gif|png)/g).test(input.image)){
+    errors.image = "You should pass a valid url image"
+  }
+
   if(!input.types.length){
     errors.types = "You must choose at least one type"
   }

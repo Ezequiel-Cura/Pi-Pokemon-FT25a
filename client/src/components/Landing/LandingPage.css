@@ -4,8 +4,27 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  display: block;
+  display: flex;
   justify-content:center;
   align-items: center;
-  border: 0;
+  -webkit-text-stroke: 2px black;
+  color: red; 
+  font-size: xx-large;
+}
+.landingPage div{
+  
+  border-radius: 5px;
+  margin-bottom:250px ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.landingPage div button{
+  font-size: large;
+  background: transparent;
+  color: white;
+  -webkit-text-stroke: 0.25px black;
+  border: none;
+  width: 100px;
+  height: 200px;
 }

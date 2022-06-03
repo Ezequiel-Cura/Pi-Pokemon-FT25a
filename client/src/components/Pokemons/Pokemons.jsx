@@ -3,7 +3,7 @@ import PokemonCard from '../PokemonCard/PokemonCard'
 
 export default function Pokemons({state}) {
   return (
-    <div>
+    <>
       { state.length !== 0 ? 
         state?.map((poke)=>(
           <PokemonCard 
@@ -20,6 +20,6 @@ export default function Pokemons({state}) {
           <h1 style={{color: "#FFF"}}>No se encontro el pokemon</h1>
         </div>
       }
-    </div>
+    </>
   )
 }

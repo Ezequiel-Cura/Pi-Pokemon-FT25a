@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getPokemon } from '../../redux/actions'
-import "./DetailPokemon.css"
+import styles from "./DetailPokemon.module.css" 
 import {Link} from "react-router-dom"
 import PikaGif from "../../multimedia/pikachu.gif"
 
@@ -19,37 +19,48 @@ export default function DetailPokemon(props) {
   },[dispatch,id])
   
   return (
-    <div className='pokemonDetail'>
+    <div className={styles.pokemonDetail}>
       <div>
         <Link to="/home"><button>Volver</button></Link>
       </div>
-      
+      <div className={styles.false_background}></div>
+      <div className={styles.pokeDetail}>
         {
           thePokemon.types ? (
 
-        <div className='detail_info'>
-          <div>
+        <div className={styles.detail_info}>
+          <div className={styles.eachInfo}>
             #{thePokemon.id}
           </div>
           <div>
             <img src={thePokemon.image} alt="Pokemon" />
           </div>
-          <div>
-            <span>{thePokemon.name}</span>
+          <div  className={styles.eachInfo}>
+            <span>{thePokemon.name.toUpperCase()}</span>
           </div>
-          <div>
-            {thePokemon.types.length === 1  ? thePokemon.types : thePokemon.types.join(" , ")}
+          <div  className={styles.eachInfo}>
+            <div>
+              <span>Types: </span>
+            </div>
+            <span>
+              {thePokemon.types.length === 1  ? thePokemon.types : thePokemon.types.join(" , ").toUpperCase()}
+            </span>
           </div>
-
-          <div className='dimensiones'>
-            <span>Height: {thePokemon.height}</span>
-            <span>Weight: {thePokemon.weight}</span>
-          </div>
-          <div className='stats'>
-            <span>Hp: {thePokemon.hp}</span>
-            <span>Speed: {thePokemon.speed}</span>
-            <span>Attack: {thePokemon.attack}</span>
-            <span>Defense: {thePokemon.defense}</span>
+          <div className={styles.info_cointainer}>
+            <div className={styles.dimensiones}>
+              <span>Height: {thePokemon.height}</span>
+              <span>Weight: {thePokemon.weight}</span>
+            </div>
+            <div className={styles.stats}>
+              <div>
+                <span>Hp: {thePokemon.hp}</span>
+                <span>Speed: {thePokemon.speed}</span>
+              </div>
+              <div>
+                <span>Attack: {thePokemon.attack}</span>
+                <span>Defense: {thePokemon.defense}</span>
+              </div>
+            </div>
           </div>
         </div>    
           ):(
@@ -58,7 +69,7 @@ export default function DetailPokemon(props) {
             </div>
           )
         }
-      
+      </div>
     </div>
   )
 }

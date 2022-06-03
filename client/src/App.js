@@ -7,6 +7,7 @@ import Home from "./components/Home/Home"
 import LandingPage from './components/Landing/LandingPage';
 import CreatePokemon from "./components/CreatePokemon/CreatePokemon"
 import DetailPokemon from "./components/DetailPokemon/DetailPokemon"
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/home/createPokemon' element={<CreatePokemon />} />
         <Route path='/home/:id' element={<DetailPokemon />} />
-
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
     </div>
   );

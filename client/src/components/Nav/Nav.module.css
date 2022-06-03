@@ -1,0 +1,14 @@
+.nav{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #919191;
+  justify-content: space-between;
+}
+.nav_item{
+  display: flex;
+  align-items: center;
+}
+.nav_item img{
+  height: 9vh;
+}
