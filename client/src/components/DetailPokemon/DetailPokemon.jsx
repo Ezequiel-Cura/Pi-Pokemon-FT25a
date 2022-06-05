@@ -1,19 +1,30 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getPokemon } from '../../redux/actions'
+import { getPokemon,deletePokemon,resetDetail } from '../../redux/actions'
 import styles from "./DetailPokemon.module.css" 
 import {Link} from "react-router-dom"
 import PikaGif from "../../multimedia/pikachu.gif"
 
-export default function DetailPokemon(props) {
+export default function DetailPokemon() {
   const {id} = useParams()
   const dispatch = useDispatch()
   const thePokemon = useSelector(state => state.poke)
+  const [eliminate,setEliminate] = useState(false)
 
-  console.log(thePokemon)
+  // console.log(thePokemon)
   //  console.log(thePokemon.type.length)
-
+  function handleEliminate(){
+    setEliminate(!eliminate)
+    dispatch(deletePokemon(id))
+  }
+  function handleClick(){
+    setEliminate(!eliminate)
+  }
+  function handleGoingBack(){
+    dispatch(resetDetail())
+    
+  }
   useEffect(()=>{
     dispatch(getPokemon(id))
   },[dispatch,id])
@@ -21,7 +32,7 @@ export default function DetailPokemon(props) {
   return (
     <div className={styles.pokemonDetail}>
       <div>
-        <Link to="/home"><button>Volver</button></Link>
+        <Link to="/home"><button onClick={handleGoingBack}>Volver</button></Link>
       </div>
       <div className={styles.false_background}></div>
       <div className={styles.pokeDetail}>
@@ -62,12 +73,26 @@ export default function DetailPokemon(props) {
               </div>
             </div>
           </div>
+          <div className={styles.eliminate_button}>
+            <button onClick={handleClick}>Eliminate Pokemon</button>
+          </div>
         </div>    
           ):(
             <div>
               <img src={PikaGif} alt="" />
             </div>
           )
+        }
+        {
+          eliminate ? (
+            <div className={styles.eliminate_card}>
+              <span>Are you sure you want to eliminate this pokemon?</span>
+              <div>
+                <button onClick={handleEliminate}>Yes</button>
+                <button onClick={handleClick}>No</button>
+              </div>
+            </div>
+          ) : null
         }
       </div>
     </div>

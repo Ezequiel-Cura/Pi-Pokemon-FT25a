@@ -11,7 +11,7 @@ export default function ErrorPage() {
         <Link to="/home">
             <button>Volver al Home</button>
         </Link>
-        <h1>ERROR VOLVETE AL INICIO</h1>
+        <h1>ERROR PAGINA NO ENCONTRADA, VOLVER AL HOME</h1>
         <img src={confused_pikachu} alt="Not found" className={styles.img_confuse}/>
         <img src={bored_pikachu} alt="Not found" className={styles.img_bored}/>
         <img src="https://loginportal.funnyjunk.com/comments/Wat+_cfe56e05699857cb89d486b11a4a505e.png"

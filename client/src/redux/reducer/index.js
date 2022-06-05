@@ -6,7 +6,10 @@ import {
   GET_TYPES,
   FILTER_BY_STATUS,
   RESET_FILTERS,
-  FILTER_BY_TYPE,FILTER_BY_API_DB} from '../actions'
+  FILTER_BY_TYPE,
+  FILTER_BY_API_DB,
+  RESET_DETAIL
+} from '../actions'
 
 
 const initialState = {
@@ -14,6 +17,7 @@ const initialState = {
   filteredPokemons:[],
   poke : {},
   types:[]
+  
 };
 
 
@@ -96,6 +100,11 @@ const rootReducer = (state = initialState,action)=> {
       return {
         ...state,
         filteredPokemons: state.pokemons
+      }
+    case RESET_DETAIL:
+      return{
+        ...state,
+        poke: action.payload
       }
     default:
       return state

@@ -4,7 +4,7 @@ import PokemonCard from '../PokemonCard/PokemonCard'
 export default function Pokemons({state}) {
   return (
     <>
-      { state.length !== 0 ? 
+      { state.length !== 0  && !state[0].error ? 
         state?.map((poke)=>(
           <PokemonCard 
             key={poke.id}

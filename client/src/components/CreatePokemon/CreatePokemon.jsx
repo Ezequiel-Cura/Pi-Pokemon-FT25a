@@ -92,6 +92,7 @@ export default function CreatePokemon() {
         image:"",
         types:[]
       })
+      alert("Pokemon Created Successfully")
       setBoolean(false)
       return 
     }else{
@@ -183,6 +184,9 @@ export default function CreatePokemon() {
                 :null
               }
             </div>
+          </div>
+          <div>
+            
           </div>
           <div className={styles.buttons}>
             <button type='reset' onClick={handleReset}>Clean types</button> 

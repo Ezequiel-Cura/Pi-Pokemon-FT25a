@@ -19,7 +19,9 @@ body{
     justify-content: space-between;
     width: 100%;
 }
-
+.false_nav div button{
+    cursor: pointer;
+}
 .form{
     border: 2px black solid;
     display: flex;
@@ -62,7 +64,7 @@ body{
 }
 
 .buttons button{
-    pointer-events: auto;
+    cursor: pointer;
 }
 .msgErrors{
     color: red;

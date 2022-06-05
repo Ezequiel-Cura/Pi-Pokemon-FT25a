@@ -4,10 +4,9 @@ const {Pokemon,Type} = require('../db')
 
 const getPokeApi = async()=>{
   try {
-    const poke1 = await axios("https://pokeapi.co/api/v2/pokemon")
-    const poke2 = await axios(poke1.data.next)
-    const data = poke1.data.results.concat(poke2.data.results)
-    const pokemons = await Promise.all(data.map(async(elem)=>{
+    const rawPokemons = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=60")
+    const dataPokemons = rawPokemons.data.results
+    const pokemons = await Promise.all(dataPokemons.map(async(elem)=>{
       let pokeDetail = await axios(elem.url);
       return {
         id: pokeDetail.data.id,
@@ -29,40 +28,47 @@ const getPokeApi = async()=>{
 }
 
 const getPokeDb = async()=>{
-  const pokeDB= await Pokemon.findAll({
-    include:{
-      model : Type,
-      attributes : ['name'],
-      through:{
-        attributes:[]
+  try {
+    const pokeDB= await Pokemon.findAll({
+      include:{
+        model : Type,
+        attributes : ['name'],
+        through:{
+          attributes:[]
+        }
       }
-    }
-  })
-  const pokemons = pokeDB.map(p=>{
-    return {
-      ...p.dataValues,
-      types: p.types?.map(t=> t.name)
-    }
-  })
-  // console.log(pokemons[0].types)
-  return pokemons
+    })
+    const pokemons = pokeDB.map(p=>{
+      return {
+        ...p.dataValues,
+        types: p.types?.map(t=> t.name)
+      }
+    })
+    return pokemons
+    
+  } catch (error) {
+    throw error
+  }
 }
 
 const getAllPoke = async()=>{
-  const apiInfo = await getPokeApi();
-  const dbInfo = await getPokeDb();
-  const allInfo = apiInfo.concat(dbInfo) // [...apiInfo,...dbInfo]
-  return allInfo
+  try {
+    const apiInfo = await getPokeApi();
+    const dbInfo = await getPokeDb();
+    const allInfo = apiInfo.concat(dbInfo) // [...apiInfo,...dbInfo]
+    return allInfo
+  } catch (error) {
+    throw error
+  }
 }
 
 const getAllTypesApi = async()=>{
   const results = await axios("https://pokeapi.co/api/v2/type")
   const types = await results.data.results.map((el)=>{
      return {
-       name : el.name
+      name : el.name
      }
   })
-
   return types
 }
 
@@ -77,7 +83,6 @@ const getPokemon = async(id)=>{
   try {
     if(isNaN(id)){
       console.log(id)
-      // let pokeId = await Pokemon.findByPk(id)
       let pokeId = await Pokemon.findOne({
         where:{id:id},
         include:{
@@ -109,11 +114,9 @@ const getPokemon = async(id)=>{
         console.log("DB POKEMON: ",pokemondb)
         return pokemondb
       } 
-
     }
     const thePokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/" + id);
     const pokeData = thePokemon.data
-    // console.log(pokeData.name)
     const pokemon= {
       id:     pokeData.id,
       name:   pokeData.name,
@@ -126,16 +129,15 @@ const getPokemon = async(id)=>{
       height: pokeData.height, 
       weight: pokeData.weight
     }
-    // console.log(pokemon)
     return pokemon
-    
   } catch (error) {
-    console.log( error.message)
+    throw error
   }
 }
 
 const getPokeByName = async(name)=>{
   try {
+    console.log("PASO 1")
     let pokeNameDb = await Pokemon.findOne({
       where:{name:name},
       include:{
@@ -146,6 +148,8 @@ const getPokeByName = async(name)=>{
         }
       }
     })
+    console.log("PASO 2----------")
+
     if(pokeNameDb){
       const filterTypesPoke = {
         ...pokeNameDb.dataValues,
@@ -166,7 +170,9 @@ const getPokeByName = async(name)=>{
       console.log("DB POKEMON: ",pokemon)
       return pokemon
     } 
-    const pokemonName = await axios("https://pokeapi.co/api/v2/pokemon/" + name);
+    console.log("PASO 3 ASKLDFJLKASDJFASDF")
+    const pokemonName = await axios("https://pokeapi.co/api/v2/pokemon/" + name.toLowerCase());
+    console.log("PASO 4")
     console.log(pokemonName)
     const pokeData = pokemonName.data
     const pokemon= {
@@ -183,7 +189,8 @@ const getPokeByName = async(name)=>{
     }
     return pokemon
   } catch (error) {
-    console.log( new Error("No se encontro el pokemon"))
+    console.log(error.message)
+    throw error
   }
   
 }

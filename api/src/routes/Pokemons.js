@@ -35,6 +35,7 @@ router.get("/",async(req,res)=>{
     const allPokemons = await getAllPoke()
     if(name){
       let pokeName = await getPokeByName(name)
+      console.log("PASO POR LA RUTA")
       if(pokeName) return res.status(200).send(pokeName) 
       return res.status(404).send("No se encontro ese Pokemon")
     }
@@ -55,21 +56,30 @@ router.get("/:id",async(req,res)=>{
   
   try {
     const thePoke = await getPokemon(id)
-    // const pokemons = await getAllPoke()
-    // // console.log("ALL POKE",pokemons)
-    // const thePoke = await pokemons.find(p=> p.id == id);
-    // console.log("THE POKE",thePoke);
+    
     if(thePoke){
       return res.status(200).send(thePoke)
     }else{
       return res.status(404).send("Pokemon not found")
     }
   } catch (error) {
-    res.send(error.message)
+    console.log("ERROR DESDE LA RUTAS",error.message)
+    res.status(404).send(error.message)
   }
 })
 
 
+router.delete("/delete/:id",async(req,res)=>{
+  const {id} = req.params
 
+  try {
+    await Pokemon.destroy({
+      where : { id : id}
+    })
+    res.status(200).send("Pokemon deleted successfully")
+  } catch (error) {
+    res.status(404).send(error.message)
+  }
+})
 
 module.exports = router
