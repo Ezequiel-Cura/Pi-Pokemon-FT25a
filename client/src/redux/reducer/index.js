@@ -89,22 +89,24 @@ const rootReducer = (state = initialState,action)=> {
         filteredPokemons: pokeTypes
       }
     case FILTER_BY_API_DB:
-      let pokeDb_Api = state.pokemons.map((e)=> e)
+      // let pokeDb_Api = state.pokemons.map((e)=> e)
 
-      if(action.payload === "Db"){
-        pokeDb_Api = state.pokemons.filter(p=> typeof p.id === "string" )
-      }
-      if(action.payload === "Api"){
-        pokeDb_Api = state.pokemons.filter(p=> typeof p.id === "number" )
-      }
+      // if(action.payload === "Db"){
+      //   pokeDb_Api = state.pokemons.filter(p=> typeof p.id === "string" )
+      // }
+      // if(action.payload === "Api"){
+      //   pokeDb_Api = state.pokemons.filter(p=> typeof p.id === "number" )
+      // }
       return {
         ...state,
-        filteredPokemons: pokeDb_Api
+        pokemons:action.payload,
+        filteredPokemons: action.payload
       }
     case RESET_FILTERS:
       return {
         ...state,
-        filteredPokemons: state.pokemons
+        pokemons:action.payload,
+        filteredPokemons: action.payload
       }
     case RESET_DETAIL:
       return{

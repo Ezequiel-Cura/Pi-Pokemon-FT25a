@@ -33,7 +33,11 @@ body{
 }
 
 .cointainer_pikaGif{
-  margin-bottom: 65vh
+  margin-bottom: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 /* ------------------ */
 

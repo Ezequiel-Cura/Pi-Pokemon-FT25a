@@ -138,7 +138,7 @@ const getPokemon = async(id)=>{
 const getPokeByName = async(name)=>{
   try {
     let pokeNameDb = await Pokemon.findOne({
-      where:{name:name},
+      where:{ name : name.toLowerCase()},
       include:{
         model : Type,
         attributes : ['name'],
@@ -147,7 +147,6 @@ const getPokeByName = async(name)=>{
         }
       }
     })
-    console.log("PASO 2----------")
 
     if(pokeNameDb){
       const filterTypesPoke = {
@@ -166,13 +165,9 @@ const getPokeByName = async(name)=>{
         height:filterTypesPoke.height,
         weight:filterTypesPoke.weight
       }
-      console.log("DB POKEMON: ",pokemon)
       return pokemon
     } 
-    console.log("PASO 3 ASKLDFJLKASDJFASDF")
     const pokemonName = await axios("https://pokeapi.co/api/v2/pokemon/" + name.toLowerCase());
-    console.log("PASO 4")
-    console.log(pokemonName)
     const pokeData = pokemonName.data
     const pokemon= {
       id:     pokeData.id,

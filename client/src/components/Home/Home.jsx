@@ -29,19 +29,15 @@ export default function Home() {
     dispatch(getTypes())
   },[dispatch])//eslint-disable-line
 
-  
  
   function handleFilterByStatus(e){
     dispatch(filterByStatus(e.target.value)) 
-    // console.log("NAME SELECT",e.target.name)
-    // console.log("value SELECT",e.target.value)
     setFiltersValue({
       ...filtersValue,
       [e.target.name] : [e.target.value]
     })
   }
   function handleFilterByType(e){
-    // console.log(e.target.value)
     dispatch(filterByType(e.target.value))
     setCargado(true)
     setFiltersValue({
@@ -68,10 +64,6 @@ export default function Home() {
       poke_types:"typeDefault"
     })
   }
-  function handleAllChanges(e){
-    // console.log(e.target.name)
-    // console.log(e.target.value)
-  }
 
   const indexOfLastPoke = currentPage * pokePerPage;
   const indexOfFirstPoke = indexOfLastPoke - pokePerPage;
@@ -83,7 +75,7 @@ export default function Home() {
     <div className='home'>
       <Nav />
       <div className={styles.home_cointainer}>
-        <div className={styles.filter_father} onChange={e => handleAllChanges(e)}>
+        <div className={styles.filter_father} >
           <h4>Filtros</h4>
           <div>
             <select  name="ABC" onChange={e => handleFilterByStatus(e)}  value={filtersValue.ABC} className={styles.select}>

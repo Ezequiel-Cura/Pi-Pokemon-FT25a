@@ -9,13 +9,15 @@ const router = Router()
 
 router.post("/",async(req,res)=>{
   const {types} = req.body
-  console.log(req.body)
+
   try {
+    
     if(req.body.image === ""){
       req.body.image = "https://w0.peakpx.com/wallpaper/90/124/HD-wallpaper-error-404-error-glitch-modern-new-sharp.jpg"
-      console.log(req.body)
-
     }
+    // const imagen = await axios.get("https://www.pinclipart.com/picdir/big/527-527284_pokemon-png-transparent-images-pokemon-png-clipart.png")
+    // console.log("CONSOLE.LOG DEL IMAGEN",imagen.data)
+
     const newPoke = await Pokemon.create(req.body)
     const typesDb = await Type.findAll({
       where:{name:types}
@@ -32,12 +34,15 @@ router.post("/",async(req,res)=>{
 router.get("/",async(req,res)=>{
   const {name,status} = req.query;
   try {
-    if(status === ""){
-
+    if(status === "Api"){
+      const apiPk = await getPokeApi()
+      return res.status(200).send(apiPk)
+    }else if(status === "Db"){
+      const dbPk = await getPokeDb()
+      return res.status(200).send(dbPk)
     }
     if(name){
       let pokeName = await getPokeByName(name)
-      console.log("PASO POR LA RUTA")
       if(pokeName) return res.status(200).send(pokeName) 
       return res.status(404).send("No se encontro ese Pokemon")
     }

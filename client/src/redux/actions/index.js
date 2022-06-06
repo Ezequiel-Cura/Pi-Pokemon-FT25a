@@ -64,11 +64,7 @@ export const getTypes = () => dispatch =>{
 }
 
 export const filterByStatus = (status) =>{
-  // return fetch("http://localhost:3001/pokemons?status=" + status)
-//     .then(respo=>respo.json())
-//     .then(json=>{
-//       dispatch({type:FILTER_BY_STATUS,payload:json})
-//     })
+  
   return {
     type: FILTER_BY_STATUS,payload: status
   }
@@ -81,15 +77,27 @@ export const filterByType= (type)=>{
 }
 
 export const filterApiDb = (status)=>{
-  return{
-    type: FILTER_BY_API_DB, payload:status
+  return function(dispatch){
+    return fetch("http://localhost:3001/pokemons?status=" + status)
+      .then(respo=>respo.json())
+      .then(json=>{
+        dispatch({type:FILTER_BY_API_DB,payload:json})
+      })
   }
+  // return{
+  //   type: FILTER_BY_API_DB, payload:status
+  // }
 }
 
-export const resetFilters=()=>{
-  return {
-    type: RESET_FILTERS, payload: []
-  }
+export const resetFilters=()=>dispatch=>{
+  return fetch("http://localhost:3001/pokemons")
+      .then(respo=>respo.json())
+      .then(json=>{
+        dispatch({type:RESET_FILTERS,payload:json})
+      })
+  // return {
+  //   type: RESET_FILTERS, payload: []
+  // }
 }
 
 export const resetDetail = () =>{
