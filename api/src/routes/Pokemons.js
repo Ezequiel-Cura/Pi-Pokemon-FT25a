@@ -30,9 +30,11 @@ router.post("/",async(req,res)=>{
 
 // /pokemons
 router.get("/",async(req,res)=>{
-  const {name} = req.query;
+  const {name,status} = req.query;
   try {
-    const allPokemons = await getAllPoke()
+    if(status === ""){
+
+    }
     if(name){
       let pokeName = await getPokeByName(name)
       console.log("PASO POR LA RUTA")
@@ -40,6 +42,7 @@ router.get("/",async(req,res)=>{
       return res.status(404).send("No se encontro ese Pokemon")
     }
     else{
+      const allPokemons = await getAllPoke()
       // console.log(allPokemons)
       return res.status(200).send(allPokemons)
     }

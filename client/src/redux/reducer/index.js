@@ -61,6 +61,11 @@ const rootReducer = (state = initialState,action)=> {
           return 0;
         })
       }
+      if(action.payload === "attack"){
+        filterPokemons = allPokemons.sort((a,b)=>
+          b.attack - a.attack
+        )
+      }
       if(action.payload === "default"){
         filterPokemons = allPokemons.sort((a,b)=>{
           if(a.id > b.id)return 1;

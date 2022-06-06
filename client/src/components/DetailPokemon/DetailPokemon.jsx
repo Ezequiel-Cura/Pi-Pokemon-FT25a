@@ -12,8 +12,6 @@ export default function DetailPokemon() {
   const thePokemon = useSelector(state => state.poke)
   const [eliminate,setEliminate] = useState(false)
 
-  // console.log(thePokemon)
-  //  console.log(thePokemon.type.length)
   function handleEliminate(){
     setEliminate(!eliminate)
     dispatch(deletePokemon(id))
@@ -23,7 +21,6 @@ export default function DetailPokemon() {
   }
   function handleGoingBack(){
     dispatch(resetDetail())
-    
   }
   useEffect(()=>{
     dispatch(getPokemon(id))
@@ -32,7 +29,7 @@ export default function DetailPokemon() {
   return (
     <div className={styles.pokemonDetail}>
       <div>
-        <Link to="/home"><button onClick={handleGoingBack}>Volver</button></Link>
+        <Link to="/home"><button onClick={handleGoingBack} className={styles.button_32}>Return Home</button></Link>
       </div>
       <div className={styles.false_background}></div>
       <div className={styles.pokeDetail}>
@@ -43,7 +40,7 @@ export default function DetailPokemon() {
           <div className={styles.eachInfo}>
             #{thePokemon.id}
           </div>
-          <div>
+          <div className={styles.pokemon_image}>
             <img src={thePokemon.image} alt="Pokemon" />
           </div>
           <div  className={styles.eachInfo}>
@@ -73,9 +70,15 @@ export default function DetailPokemon() {
               </div>
             </div>
           </div>
-          <div className={styles.eliminate_button}>
-            <button onClick={handleClick}>Eliminate Pokemon</button>
-          </div>
+          {
+            typeof thePokemon.id === "string" ? (
+              <div className={styles.eliminate_button}>
+                <button onClick={handleClick} className={styles.button_24}>
+                  Delete pokemon
+                </button>
+              </div>
+              ) : null
+          }
         </div>    
           ):(
             <div>

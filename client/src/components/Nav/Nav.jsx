@@ -9,10 +9,12 @@ export default function Nav() {
   return (
     <div className={styles.nav}>
       <div className={styles.nav_item}>
-        <img src={logo} alt="logo" />
+        <Link to="/home">
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       <div className={styles.nav_item}>
-        <Link to="/home/createPokemon"><button>CreatePokemon</button></Link>
+        <Link to="/home/createPokemon"><button className={styles.button_4}>CreatePokemon</button></Link>
       </div>
       <div className={styles.nav_item}>
         <SearchBar />

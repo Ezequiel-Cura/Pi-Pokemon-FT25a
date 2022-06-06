@@ -7,6 +7,8 @@
     border-radius: 20px;
     margin: 2rem;
     max-width: 30rem;
+    min-width: 30rem;
+    min-height: 660px ;
 }
 
 .img_cointainer img{

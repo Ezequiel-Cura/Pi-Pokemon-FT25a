@@ -23,9 +23,11 @@ export default function Home() {
   })
 
   useEffect(()=>{
-    dispatch(getAllPokemons())
+    if(!filteredPoke.length){
+      dispatch(getAllPokemons())
+    }
     dispatch(getTypes())
-  },[dispatch])
+  },[dispatch])//eslint-disable-line
 
   
  
@@ -44,7 +46,8 @@ export default function Home() {
     setCargado(true)
     setFiltersValue({
       ...filtersValue,
-      [e.target.name] : [e.target.value]
+      [e.target.name] : [e.target.value],
+      ABC : "default"
     })
   }
 
@@ -52,7 +55,9 @@ export default function Home() {
     dispatch(filterApiDb(e.target.value));
     setFiltersValue({
       ...filtersValue,
-      [e.target.name] : [e.target.value]
+      [e.target.name] : [e.target.value],
+      ABC: "default",
+      poke_types:"typeDefault"
     })
   }
   function handleReset(e){
@@ -81,21 +86,25 @@ export default function Home() {
         <div className={styles.filter_father} onChange={e => handleAllChanges(e)}>
           <h4>Filtros</h4>
           <div>
-            <select  name="ABC" onChange={e => handleFilterByStatus(e)}  value={filtersValue.ABC}>
-              <option value="default">Default</option>
+            <select  name="ABC" onChange={e => handleFilterByStatus(e)}  value={filtersValue.ABC} className={styles.select}>
+              <option value="default">Order</option>
               <option value="asc">A-Z</option>
               <option value="des">Z-A</option>
+              <option value="attack">Attack</option>
             </select>
-            <select name="Api_Db" onChange={e => handleFilterByApiDb(e)} value={filtersValue.Api_Db}>
-              <option value="All">Default</option>
-              <option value="Api">Api Pokemon</option>
-              <option value="Db">Db Pokemon</option>
+            <select name="Api_Db" onChange={e =>{ 
+              handleFilterByApiDb(e)
+              setCurrentPage(1);
+              }} value={filtersValue.Api_Db} className={styles.select}>
+              <option value="All">All Pokemons</option>
+              <option value="Api">Api Pokemons</option>
+              <option value="Db">Db Pokemons</option>
             </select>
             <select name="poke_types" onChange={e=>{
               handleFilterByType(e);
               setCurrentPage(1);
-              }} value={filtersValue.poke_types}>
-              <option value="typeDefault">Default</option>
+              }} value={filtersValue.poke_types} className={styles.select}>
+              <option value="typeDefault">Types</option>
               {
                 // currentTypes.length > 0 ?
                 currentTypes.map((type)=>(
@@ -108,7 +117,7 @@ export default function Home() {
             <button onClick={e=>{
               handleReset(e);
 
-            }} type="reset">Clean filters</button>
+            }} type="reset" className={styles.button_4}>Clean filters</button>
           </div>
         </div>
         
@@ -123,7 +132,7 @@ export default function Home() {
                 state ={currentPoke}
               />
             :
-              <div>
+              <div className={styles.cointainer_pikaGif}>
                 <img src={gif} alt="loading" />
                 <span>Loading...</span>
               </div>

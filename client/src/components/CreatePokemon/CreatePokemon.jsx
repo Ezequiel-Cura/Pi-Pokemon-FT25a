@@ -103,13 +103,11 @@ export default function CreatePokemon() {
     <div className={styles.cointanier}>
       <div className={styles.false_nav}>
         <div>
-          <Link to="/home"><button>return Home</button></Link>
+          <Link to="/home"><button className={styles.button_32}>Return Home</button></Link>
         </div>
-
-        <div>
-          <h1>Create your Pokemon</h1>
-        </div>
-        <div>
+        <div className={styles.titulo}>
+          
+            <h1>Create your Pokemon</h1>
           
         </div>
       </div>
@@ -189,8 +187,8 @@ export default function CreatePokemon() {
             
           </div>
           <div className={styles.buttons}>
-            <button type='reset' onClick={handleReset}>Clean types</button> 
-            <button  type='submit'>Submit</button>
+            <button type='reset' onClick={handleReset} className={styles.button_4}>Clean types</button> 
+            <button  type='submit' className={styles.button_4} >Submit</button>
           </div>
         </form>
       </div>

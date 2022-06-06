@@ -12,8 +12,12 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
+  margin: 10px auto;
   padding: 10px;
+  border: 1px black solid;
+  border-radius: 10px;
+  width: fit-content;
+
 }
 .filter_father select{
   margin: 0 10px 10px 10px;
@@ -27,6 +31,125 @@ body{
   align-items: center;
   justify-content: center;
 }
-.pokemon_cointainer div{
 
+.cointainer_pikaGif{
+  margin-bottom: 65vh
+}
+/* ------------------ */
+
+
+.select {
+  position: relative;
+  min-width: 100px;
+  font-weight: 600;
+}
+.select svg {
+  position: absolute;
+  right: 12px;
+  top: calc(50% - 3px);
+  width: 10px;
+  height: 6px;
+  stroke-width: 2px;
+  stroke: #9098a9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.select {
+  padding: 7px 40px 7px 12px;
+  
+  border: 1px solid #e8eaed;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 1px 3px -2px #9098a9;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  transition: all 150ms ease;
+}
+.select:required:invalid {
+  color: #5a667f;
+}
+.select option {
+  color: #223254;
+}
+.select option[value=""][disabled] {
+  display: none;
+}
+.select:focus {
+  outline: none;
+  border-color: #07f;
+  box-shadow: 0 0 0 2px rgba(0,119,255,0.2);
+}
+.select:hover + svg {
+  stroke: #07f;
+}
+.sprites {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* --------------------- */
+
+
+.button_4 {
+  appearance: none;
+  background-color: #FAFBFC;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292E;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.button_4:hover {
+  background-color: #b6b9be;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.button_4:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.button_4:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.button_4:focus {
+  outline: 1px transparent;
+}
+
+.button_4:before {
+  display: none;
+}
+
+.button_4:-webkit-details-marker {
+  display: none;
 }

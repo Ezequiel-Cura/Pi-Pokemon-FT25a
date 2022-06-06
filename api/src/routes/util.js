@@ -137,7 +137,6 @@ const getPokemon = async(id)=>{
 
 const getPokeByName = async(name)=>{
   try {
-    console.log("PASO 1")
     let pokeNameDb = await Pokemon.findOne({
       where:{name:name},
       include:{
