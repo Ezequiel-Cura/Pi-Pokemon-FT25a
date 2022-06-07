@@ -4,6 +4,7 @@ body{
     /* height: 100vh; */
 }
 
+/* to top, #d87300, #919191 */
 
 .cointanier{
     display: flex;
@@ -11,6 +12,10 @@ body{
     align-items: center;
     margin: 3em;
     
+}
+
+input{
+  width: 200px;
 }
 
 .false_nav{
@@ -33,6 +38,7 @@ body{
     margin-bottom: 30vh;
     border-radius: 20px;
     box-shadow: 10px 10px 5px red;
+
 }
 .titulo{
     display: flex;
@@ -41,7 +47,7 @@ body{
 .inside_form{
     display: flex;
     flex-direction: column;
-    
+    width: 400px;
 }
 
 .eachInput{

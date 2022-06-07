@@ -13,7 +13,9 @@ export default function SearchBar() {
   }
   function handleSubmit(e){
     e.preventDefault()
-    dispatch(getPokemonByName(name))
+    if(name !== ""){
+      dispatch(getPokemonByName(name))
+    }
     setName("")
   }
   return (

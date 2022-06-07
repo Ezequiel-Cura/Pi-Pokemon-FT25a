@@ -71,7 +71,6 @@ export default function CreatePokemon() {
 
   function handleSubmit(e){
     e.preventDefault()
-    
     // setErrors(Validate({
     //   ...input,
     //   [e.target.name] : e.target.value
@@ -79,7 +78,6 @@ export default function CreatePokemon() {
 
     // console.log("ERRORES",Object.keys(errors).length,errors)
     if(Object.keys(errors).length === 0){
-      // console.log("ENTRE AL DISPATCH")
       dispatch(createPokemon(input))
       setInputs({
         name:"",

@@ -120,7 +120,7 @@ export const createPokemon = (obj)=>{
         body: JSON.stringify(obj)
       })
     } catch (error) {
-      console.log(error.message)
+      
       
     }
 

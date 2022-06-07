@@ -1,6 +1,6 @@
 export default function Validate(input,allPokemons){
   const errors = {};
-  console.log(input)
+  
   if(!input.name){
     errors.name = "Name is requiere"
   }

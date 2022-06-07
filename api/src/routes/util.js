@@ -138,7 +138,7 @@ const getPokemon = async(id)=>{
 const getPokeByName = async(name)=>{
   try {
     let pokeNameDb = await Pokemon.findOne({
-      where:{ name : name.toLowerCase()},
+      where:{ name : name},
       include:{
         model : Type,
         attributes : ['name'],

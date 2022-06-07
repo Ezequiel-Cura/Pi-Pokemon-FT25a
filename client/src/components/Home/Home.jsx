@@ -9,7 +9,7 @@ import styles from "./Home.module.css"
 
 export default function Home() {
   const dispatch = useDispatch()
-  // let currentPokemons = useSelector(state => state.pokemons)
+
   const [cargado,setCargado] = useState(false)
   const [currentPage,setCurrentPage] = useState(1)
   const pokePerPage = 12;
@@ -113,12 +113,12 @@ export default function Home() {
           </div>
         </div>
         
-        <Pagination pokePerPage={pokePerPage} totalPoke={filteredPoke.length} paginate={paginate}/>
+        <Pagination pokePerPage={pokePerPage} totalPoke={filteredPoke.length} paginate={paginate} currentPage={currentPage}/>
         
         <div className={styles.pokemon_cointainer}>
 
           {
-            currentPoke.length || cargado?
+            currentPoke.length || cargado ?
             
               <Pokemons 
                 state ={currentPoke}
@@ -130,7 +130,7 @@ export default function Home() {
               </div>
           }
         </div> 
-        <Pagination pokePerPage={pokePerPage} totalPoke={filteredPoke.length} paginate={paginate}/>
+        <Pagination pokePerPage={pokePerPage} totalPoke={filteredPoke.length} paginate={paginate} currentPage={currentPage}/>
 
       </div>
     </div>
