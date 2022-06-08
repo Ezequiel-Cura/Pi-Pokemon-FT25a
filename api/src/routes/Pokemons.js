@@ -25,7 +25,6 @@ router.post("/",async(req,res)=>{
     newPoke.addTypes(typesDb)
     return res.send({msg: "Pokemon creado"});
   } catch (error) {
-    console.log(error)
     res.status(400).send({error:error.message})
   }
 })
@@ -48,12 +47,10 @@ router.get("/",async(req,res)=>{
     }
     else{
       const allPokemons = await getAllPoke()
-      // console.log(allPokemons)
       return res.status(200).send(allPokemons)
     }
     
   } catch (error) {
-    console.log(error.message)
     res.status(404).send({error: error.message})
   }
 })
@@ -71,11 +68,9 @@ router.get("/:id",async(req,res)=>{
       return res.status(404).send("Pokemon not found")
     }
   } catch (error) {
-    console.log("ERROR DESDE LA RUTAS",error.message)
     res.status(404).send(error.message)
   }
 })
-
 
 router.delete("/delete/:id",async(req,res)=>{
   const {id} = req.params

@@ -39,7 +39,6 @@ export const getPokemon = (id)=>dispatch=>{
 }
 
 export const getPokemonByName = (name) => dispatch=>{
-  console.log(name)
   try {
     return fetch("http://localhost:3001/pokemons?name=" + name)
       .then(res=>res.json())
@@ -108,7 +107,6 @@ export const resetDetail = () =>{
 
 
 export const createPokemon = (obj)=>{
-  console.log(obj)
   return function(){
     try {
       return fetch("http://localhost:3001/pokemons",{
@@ -123,7 +121,6 @@ export const createPokemon = (obj)=>{
       
       
     }
-
   }
 }
 

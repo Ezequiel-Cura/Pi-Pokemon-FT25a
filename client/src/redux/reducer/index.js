@@ -121,4 +121,3 @@ const rootReducer = (state = initialState,action)=> {
 
 export default rootReducer;
 
-// BUSCAR CLASE DE DIEGO EN DONDE EL REDUCER LO HACE DE LA MANERA MAS EFICIENTE

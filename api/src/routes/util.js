@@ -4,7 +4,12 @@ const {Pokemon,Type} = require('../db')
 
 const getPokeApi = async()=>{
   try {
-    const rawPokemons = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=60")
+    const rawPokemons = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=60");
+    // let rawPokemons;
+    // axios.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=60")
+    // .then(({data})=>{
+    //   rawPokemons= data
+    // })
     const dataPokemons = rawPokemons.data.results
     const pokemons = await Promise.all(dataPokemons.map(async(elem)=>{
       let pokeDetail = await axios(elem.url);
@@ -82,7 +87,6 @@ const getAllTypesDb = async()=>{
 const getPokemon = async(id)=>{
   try {
     if(isNaN(id)){
-      console.log(id)
       let pokeId = await Pokemon.findOne({
         where:{id:id},
         include:{
@@ -111,7 +115,6 @@ const getPokemon = async(id)=>{
           height:filterTypesPoke.height,
           weight:filterTypesPoke.weight
         }
-        console.log("DB POKEMON: ",pokemondb)
         return pokemondb
       } 
     }
@@ -183,7 +186,6 @@ const getPokeByName = async(name)=>{
     }
     return pokemon
   } catch (error) {
-    console.log(error.message)
     throw error
   }
   
