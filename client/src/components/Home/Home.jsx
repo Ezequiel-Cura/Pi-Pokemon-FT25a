@@ -23,9 +23,9 @@ export default function Home() {
   })
 
   useEffect(()=>{
-    if(!filteredPoke.length){
-      dispatch(getAllPokemons())
-    }
+    // if(!filteredPoke.length){
+    dispatch(getAllPokemons())
+    // }
     dispatch(getTypes())
   },[dispatch])//eslint-disable-line
 
@@ -68,7 +68,7 @@ export default function Home() {
   const indexOfLastPoke = currentPage * pokePerPage;
   const indexOfFirstPoke = indexOfLastPoke - pokePerPage;
   const currentPoke = filteredPoke?.slice(indexOfFirstPoke,indexOfLastPoke)
-
+  
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (

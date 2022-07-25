@@ -55,7 +55,10 @@ export default function Validate(input,allPokemons){
 
   if(!input.image){
     
-  }else if(!(/(http(s?):)([/|.|\w|\s|-])*.(?:jpg|gif|png)/g).test(input.image)){
+  }else if(input.image.length > 249){
+    errors.image = "The URL should have a maximun of 250 characters"
+  }
+  else if(!(/(http(s?):)([/|.|\w|\s|-])*.(?:jpg|gif|png)/g).test(input.image)){
     errors.image = "You should pass a valid url image"
   }
 

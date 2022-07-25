@@ -20,11 +20,11 @@ export default function Pagination({pokePerPage,totalPoke,paginate,currentPage})
         </div>
         :
         
-          <div key={num} onClick={()=>paginate(num)} className={styles.currentPage}>
-            <span>
-              {num} 
-            </span>
-          </div>
+        <div key={num} onClick={()=>paginate(num)} className={styles.currentPage}>
+          <span>
+            {num} 
+          </span>
+        </div>
       ))}
     </div>
   )

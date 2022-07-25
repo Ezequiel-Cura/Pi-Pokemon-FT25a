@@ -156,6 +156,7 @@ export default function CreatePokemon() {
 
           <div className={styles.eachInput}>
             <label >Image: </label>
+            {/* usar base 64 y input text area */}
             <input type="text" name="image" value={input.image} onChange={handleChange}/>
             {boolean && errors.image ? <span className={styles.msgErrors}>{errors.image}</span>:null}
 

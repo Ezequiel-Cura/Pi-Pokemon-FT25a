@@ -3,7 +3,7 @@ const { Router} = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const PokemonsRoutes = require('./Pokemons.js');
 const {getAllTypesApi,getAllTypesDb} = require('./util');
-const {Type} = require("../db")
+const {Type,Pokemon} = require("../db")
 
 const router = Router();
 
@@ -12,6 +12,7 @@ const router = Router();
 router.use('/pokemons', PokemonsRoutes);
 
 router.get("/types",async(req,res)=>{
+
     try {
       const types = await getAllTypesApi()
       await types.forEach(element => {

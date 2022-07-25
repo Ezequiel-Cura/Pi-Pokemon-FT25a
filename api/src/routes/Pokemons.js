@@ -32,6 +32,7 @@ router.post("/",async(req,res)=>{
 // /pokemons
 router.get("/",async(req,res)=>{
   const {name,status} = req.query;
+  
   try {
     if(status === "Api"){
       const apiPk = await getPokeApi()
@@ -86,3 +87,6 @@ router.delete("/delete/:id",async(req,res)=>{
 })
 
 module.exports = router
+
+
+// el put no va actualizar los types

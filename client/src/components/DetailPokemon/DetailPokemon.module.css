@@ -78,7 +78,10 @@
 }
 
 .pokemon_image img{
-  max-width: 500px;
+  max-height: 500px;
+  display: flex;
+  margin: 0px auto;
+
 }
 
 

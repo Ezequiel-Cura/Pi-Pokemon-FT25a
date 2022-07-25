@@ -171,12 +171,13 @@ const getPokeByName = async(name)=>{
       return pokemon
     } 
     const pokemonName = await axios("https://pokeapi.co/api/v2/pokemon/" + name.toLowerCase());
+    
     const pokeData = pokemonName.data
     const pokemon= {
       id:     pokeData.id,
       name:   pokeData.name,
       image:  pokeData.sprites.other.home.front_default,
-      types:   pokeData.types.map(t => t.type.name),
+      types:  pokeData.types.map(t => t.type.name),
       hp:     pokeData.stats[0].base_stat,
       attack: pokeData.stats[1].base_stat,
       defense:pokeData.stats[2].base_stat,
@@ -184,6 +185,7 @@ const getPokeByName = async(name)=>{
       height: pokeData.height, 
       weight: pokeData.weight
     }
+    console.log(pokemon)
     return pokemon
   } catch (error) {
     throw error
