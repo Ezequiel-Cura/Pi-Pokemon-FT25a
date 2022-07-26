@@ -67,6 +67,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 60;
 }
 .eliminate_card div button{
   margin: 5px 10px;
@@ -144,6 +145,7 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  z-index: 100;
 }
 
 .button_32:not(:disabled):hover,
@@ -157,4 +159,65 @@
   filter: saturate(0.2) opacity(0.5);
   -webkit-filter: saturate(0.2) opacity(0.5);
   cursor: not-allowed;
+}
+
+
+.button_update {
+  margin:  0px 10px;
+  background: #425eff;
+  border: 1px solid #425eff;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button_update:hover,
+.button_update:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #425eff;
+}
+
+.button_update:active {
+  opacity: .5;
+}
+
+.formUpdate{
+  position: absolute;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  border: 2px black solid;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 70;
+}
+
+.closing_div{
+  position: absolute;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }

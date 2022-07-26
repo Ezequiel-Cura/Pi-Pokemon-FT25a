@@ -131,3 +131,16 @@ export const deletePokemon = (id)=>{
     })
   }
 }
+
+export const updatePokemon = (id,data)=>{
+  
+  return function(){
+    return fetch("http://localhost:3001/pokemons/put/" + id,{
+      method:"PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },// no me llegaba el body al back por que no habia puesto el headers
+      body: JSON.stringify(data)
+    })
+  }
+}

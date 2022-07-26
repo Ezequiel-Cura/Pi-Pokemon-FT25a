@@ -86,7 +86,42 @@ router.delete("/delete/:id",async(req,res)=>{
   }
 })
 
+router.put("/put/:id",async(req,res)=>{
+  const {id} = req.params
+  const {name,hp,attack,defense,speed,height,weight,types} = req.body
+  console.log(types)
+  try {
+    await Pokemon.upsert({
+      id: id,
+      name : name,
+      hp: hp,
+      attack: attack,
+      defense: defense,
+      speed: speed,
+      height:height,
+      weight: weight,
+    })
+    let pokemon2 = await Pokemon.findOne({
+      where:{id:id},
+      include:{
+        model : Type,
+        attributes : ['name'],
+        through:{
+          attributes:[]
+        }
+      }
+    })
+    const typesDb = await Type.findAll({
+      where:{name:types}
+    })
+    await pokemon2.setTypes(typesDb)
+    
+    res.status(200).send("Pokemon updated")
+  } catch (error) {
+    console.log(error)
+    res.status(404).send("Update failed")
+  }
+})
+
+
 module.exports = router
-
-
-// el put no va actualizar los types
