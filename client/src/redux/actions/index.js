@@ -16,7 +16,7 @@ export const RESET_DETAIL = 'RESET_DETAIL'
 
 export const getAllPokemons = ()=>dispatch =>{
   try {
-    return fetch( process.env.REACT_APP_BACK_URL + "/pokemons")
+    return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons`)
       .then(respo=>respo.json())
       .then(json=>{
         dispatch({type:GET_ALL_POKEMONS,payload:json})
@@ -31,7 +31,7 @@ export const getAllPokemons = ()=>dispatch =>{
 export const getPokemon = (id)=>dispatch=>{
   
   try {
-    return fetch(process.env.REACT_APP_BACK_URL +"/pokemons/" + id)
+    return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons/` + id)
       .then(res=> res.json())
       .then(json=> {
         dispatch({type:GET_POKEMON,payload:json})
@@ -43,7 +43,7 @@ export const getPokemon = (id)=>dispatch=>{
 
 export const getPokemonByName = (name) => dispatch=>{
   try {
-    return fetch(process.env.REACT_APP_BACK_URL+"/pokemons?name=" + name)
+    return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons?name=` + name)
       .then(res=>res.json())
       .then(json=>{
         dispatch({type:GET_POKEMON_BY_NAME , payload:json})
@@ -55,7 +55,7 @@ export const getPokemonByName = (name) => dispatch=>{
 
 export const getTypes = () => dispatch =>{
   try {
-    return fetch(process.env.REACT_APP_BACK_URL+"/types")
+    return fetch(`${process.env.REACT_APP_BACK_URL}/types`)
       .then(res=> res.json())
       .then(json=>{
         dispatch({type:GET_TYPES  , payload:json})
@@ -80,7 +80,7 @@ export const filterByType= (type)=>{
 
 export const filterApiDb = (status)=>{
   return function(dispatch){
-    return fetch(process.env.REACT_APP_BACK_URL+"/pokemons?status=" + status)
+    return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons?status=` + status)
       .then(respo=>respo.json())
       .then(json=>{
         dispatch({type:FILTER_BY_API_DB,payload:json})
@@ -92,7 +92,7 @@ export const filterApiDb = (status)=>{
 }
 
 export const resetFilters=()=>dispatch=>{
-  return fetch(process.env.REACT_APP_BACK_URL+"/pokemons")
+  return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons`)
       .then(respo=>respo.json())
       .then(json=>{
         dispatch({type:RESET_FILTERS,payload:json})
@@ -112,7 +112,7 @@ export const resetDetail = () =>{
 export const createPokemon = (obj)=>{
   return function(){
     try {
-      return fetch(process.env.REACT_APP_BACK_URL+"/pokemons",{
+      return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons`,{
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -129,7 +129,7 @@ export const createPokemon = (obj)=>{
 
 export const deletePokemon = (id)=>{
   return function(){
-    return fetch(process.env.REACT_APP_BACK_URL+"/pokemons/delete/" + id,{
+    return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons/delete/` + id,{
       method:'DELETE'
     })
   }
@@ -138,7 +138,7 @@ export const deletePokemon = (id)=>{
 export const updatePokemon = (id,data)=>{
   
   return function(){
-    return fetch(process.env.REACT_APP_BACK_URL+"/pokemons/put/" + id,{
+    return fetch(`${process.env.REACT_APP_BACK_URL}/pokemons/put/` + id,{
       method:"PUT",
       headers: {
         'Content-Type': 'application/json'
