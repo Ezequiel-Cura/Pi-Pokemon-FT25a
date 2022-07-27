@@ -14,7 +14,6 @@ export default function DetailPokemon() {
   const thePokemon = useSelector(state => state.poke)
   let allPokemons = useSelector(state=>state.pokemons)
   allPokemons = allPokemons.filter(p=> p.id !== id)
-  console.log(allPokemons)
   const [eliminate,setEliminate] = useState(false)
   const [update,setUpdate]=useState(false)
   const [errors,setErrors] = useState({})
@@ -29,7 +28,7 @@ export default function DetailPokemon() {
     image:"",
     types:[]
   })
-  console.log(data)
+  
   function handleEliminate(){
     setEliminate(!eliminate)
     dispatch(deletePokemon(id))
@@ -101,7 +100,11 @@ export default function DetailPokemon() {
   function handleSubmit(e){
     e.preventDefault()
     dispatch(updatePokemon(id,data))// dispatch to the back
-    window.location.reload()
+    setTimeout(() => {
+      dispatch(getPokemon(id))
+      
+    }, 1000);
+    setUpdate(false)
   }
   return (
     <div className={styles.pokemonDetail}>

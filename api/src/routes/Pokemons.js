@@ -89,7 +89,7 @@ router.delete("/delete/:id",async(req,res)=>{
 router.put("/put/:id",async(req,res)=>{
   const {id} = req.params
   const {name,hp,attack,defense,speed,height,weight,types} = req.body
-  console.log(types)
+  
   try {
     await Pokemon.upsert({
       id: id,
