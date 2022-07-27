@@ -75,6 +75,7 @@ export default function DetailPokemon() {
     setUpdate(!update)// pop up of update
   }
   function handleChangesUpdate(e){
+    e.preventDefault()
     setData({
       ...data,
       [e.target.name] : e.target.value
@@ -183,7 +184,7 @@ export default function DetailPokemon() {
             </div>
               <div className={styles.formUpdate}>
                 <span>Update your pokemon</span>
-                <form action="" >
+                <form action=""  >
                   <div>
                     <label htmlFor="">Name: </label>
                     <input type="text" value={data.name} name="name" onChange={(e)=>handleChangesUpdate(e)}/>
