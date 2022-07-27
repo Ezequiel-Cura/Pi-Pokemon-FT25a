@@ -66,10 +66,7 @@ export default function DetailPokemon() {
     }
   },[data])
 
-  function handleUpdate(){
-    dispatch(updatePokemon(id,data))// dispatch to the back
-    window.location.reload()
-  }
+ 
   function handleClickUpdate(){
     setEliminate(false)
     setUpdate(!update)// pop up of update
@@ -99,6 +96,12 @@ export default function DetailPokemon() {
       ...data,
       types:[]
     })
+  }
+
+  function handleSubmit(e){
+    e.preventDefault()
+    dispatch(updatePokemon(id,data))// dispatch to the back
+    window.location.reload()
   }
   return (
     <div className={styles.pokemonDetail}>
@@ -184,7 +187,7 @@ export default function DetailPokemon() {
             </div>
               <div className={styles.formUpdate}>
                 <span>Update your pokemon</span>
-                <form action=""  >
+                <form action="" onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="">Name: </label>
                     <input type="text" value={data.name} name="name" onChange={(e)=>handleChangesUpdate(e)}/>
@@ -194,34 +197,34 @@ export default function DetailPokemon() {
                   <div>
                     <label htmlFor="">Hp: </label>
                     <input type="number" value={data.hp} name="hp" onChange={(e)=>handleChangesUpdate(e)}/>
-
+                    {errors.hp ? <span className={styles.msgErrors}>{errors.hp}</span>:null}
                   </div>
 
                   <div>
                     <label htmlFor="">Attack:</label>
                     <input type="number" value={data.attack} name="attack" onChange={(e)=>handleChangesUpdate(e)}/>
-
+                    {errors.attack ? <span className={styles.msgErrors}>{errors.attack}</span>:null}
                   </div>
 
                   <div>
                     <label htmlFor="">Defense:</label>
                     <input type="number" value={data.defense} name="defense" onChange={(e)=>handleChangesUpdate(e)}/>
-
+                    {errors.defense ? <span className={styles.msgErrors}>{errors.defense}</span>:null}
                   </div>
                   <div>
                     <label htmlFor="">Speed:</label>
                     <input type="number" value={data.speed} name="speed" onChange={(e)=>handleChangesUpdate(e)}/>
-
+                    {errors.speed ? <span className={styles.msgErrors}>{errors.speed}</span>:null}
                   </div>
                   <div>
                     <label htmlFor="">Height:</label>
                     <input type="number" value={data.height} name="height" onChange={(e)=>handleChangesUpdate(e)}/>
-
+                    {errors.height ? <span className={styles.msgErrors}>{errors.height}</span>:null}
                   </div>
                   <div>
                     <label htmlFor="">Weight:</label>
                     <input type="number" value={data.weight} name="weight" onChange={(e)=>handleChangesUpdate(e)}/>
-
+                    {errors.weight ? <span className={styles.msgErrors}>{errors.weight}</span>:null}
                   </div>
                   <div>
                     <label htmlFor="">Change Types</label>
@@ -249,7 +252,7 @@ export default function DetailPokemon() {
                     <input type="text" />
                   </div> */}
                 </form>
-                <button onClick={handleUpdate}>Update</button>
+                <button type='submit' onClick={(e)=>handleSubmit(e)} disabled={Object.keys(errors).length === 0 ? false : true}>Update</button>
                 <button onClick={handleClickUpdate}>Cancel</button>
               </div>
             </>

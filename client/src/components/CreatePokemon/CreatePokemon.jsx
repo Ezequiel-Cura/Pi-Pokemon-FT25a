@@ -111,7 +111,7 @@ export default function CreatePokemon() {
       </div>
 
       <div className={styles.form} >
-        <form action=""   onSubmit={handleSubmit} className={styles.inside_form}>
+        <form action=""  onSubmit={handleSubmit} className={styles.inside_form}>
           <div className={styles.eachInput}>
             <label >*Name: </label>
             <input type="text" name='name' value={input.name} onChange={handleChange}/>
