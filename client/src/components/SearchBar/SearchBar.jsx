@@ -20,7 +20,7 @@ export default function SearchBar() {
   }
   return (
     <div className={styles.searchBar}>
-      <span>Busca tu pokemon</span>
+      <span>Search your pokemon</span>
       <div>
         <input 
           placeholder='pokemon...'
@@ -29,7 +29,7 @@ export default function SearchBar() {
           onKeyPress={e => e.key === 'Enter' && handleSubmit(e) }
           onChange={e=>handleChange(e)} className={styles.button_4}
         />
-        <button type='submit' onClick={e=>handleSubmit(e)} className={styles.button_4}>Buscar</button>
+        <button type='submit' onClick={e=>handleSubmit(e)} className={styles.button_4}>Search</button>
       </div>
     </div>
   )

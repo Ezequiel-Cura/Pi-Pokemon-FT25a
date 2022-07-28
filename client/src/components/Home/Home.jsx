@@ -76,7 +76,7 @@ export default function Home() {
       <Nav />
       <div className={styles.home_cointainer}>
         <div className={styles.filter_father} >
-          <h4>Filtros</h4>
+          <h4>Filters</h4>
           <div>
             <select  name="ABC" onChange={e => handleFilterByStatus(e)}  value={filtersValue.ABC} className={styles.select}>
               <option value="default">Order</option>

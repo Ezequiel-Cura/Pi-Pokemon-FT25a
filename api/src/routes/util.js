@@ -185,7 +185,7 @@ const getPokeByName = async(name)=>{
       height: pokeData.height, 
       weight: pokeData.weight
     }
-    console.log(pokemon)
+    
     return pokemon
   } catch (error) {
     throw error

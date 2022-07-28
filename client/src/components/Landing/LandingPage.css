@@ -21,11 +21,17 @@
 }
 .landingPage div button{
   font-size: large;
-  background: transparent;
+  background: black;
   color: white;
   -webkit-text-stroke: 0.25px black;
   border: none;
-  width: 100px;
-  height: 200px;
+  width: 150px;
+  height: 100px;
   cursor: pointer;
+  opacity: .7;
+  border-radius: 20px;
+}
+
+.landingPage div button:hover{
+  opacity: 1;
 }

@@ -7,7 +7,7 @@ export default function LandingPage() {
     <div className='landingPage'>
       <div>
         <h1>Pokemon Api</h1>
-        <Link to={"/home"}><button>Ingresar</button></Link>
+        <Link to={"/home"}><button >Ingresar</button></Link>
       </div>
     </div>
   )

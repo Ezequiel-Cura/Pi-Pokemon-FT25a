@@ -118,7 +118,7 @@ router.put("/put/:id",async(req,res)=>{
     
     res.status(200).send("Pokemon updated")
   } catch (error) {
-    console.log(error)
+    
     res.status(404).send("Update failed")
   }
 })
