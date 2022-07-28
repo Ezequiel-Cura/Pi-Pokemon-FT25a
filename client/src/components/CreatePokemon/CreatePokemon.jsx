@@ -114,50 +114,50 @@ export default function CreatePokemon() {
         <form action=""  onSubmit={handleSubmit} className={styles.inside_form}>
           <div className={styles.eachInput}>
             <label >*Name: </label>
-            <input type="text" name='name' value={input.name} onChange={handleChange}/>
+            <input type="text" name='name' value={input.name} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.name ? <span className={styles.msgErrors}>{errors.name}</span> : null}
           </div>
 
           <div className={styles.eachInput}>
             <label >*Hp: </label>
-            <input type="number" name='hp' value={input.hp} onChange={handleChange}/>
+            <input type="number" name='hp' value={input.hp} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.hp ? <span className={styles.msgErrors}>{errors.hp}</span>:null}
           </div>
 
           <div className={styles.eachInput}>
             <label >*Attack: </label>
-            <input type="number" name='attack' value={input.attack} onChange={handleChange}/>
+            <input type="number" name='attack' value={input.attack} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.attack ? <span className={styles.msgErrors}>{errors.attack}</span>:null}
           </div>
 
           <div className={styles.eachInput}>
             <label >*Defense: </label>
-            <input type="number" name='defense' value={input.defense} onChange={handleChange}/>
+            <input type="number" name='defense' value={input.defense} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.defense ? <span className={styles.msgErrors}>{errors.defense}</span>:null}
           </div>
 
           <div className={styles.eachInput}>
             <label >*Speed: </label>
-            <input type="number" name='speed' value={input.speed} onChange={handleChange}/>
+            <input type="number" name='speed' value={input.speed} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.speed ? <span className={styles.msgErrors}>{errors.speed}</span>:null}
           </div>
 
           <div className={styles.eachInput}>
             <label >*Height: </label>
-            <input type="number" name='height' value={input.height} onChange={handleChange}/>
+            <input type="number" name='height' value={input.height} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.height ? <span className={styles.msgErrors}>{errors.height}</span>:null}
           </div>
 
           <div className={styles.eachInput}>
             <label >*Weight: </label>
-            <input type="number" name='weight' value={input.weight} onChange={handleChange}/>
+            <input type="number" name='weight' value={input.weight} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.weight ? <span className={styles.msgErrors}>{errors.weight}</span>:null}
           </div>
 
           <div className={styles.eachInput}>
             <label >Image: </label>
             {/* usar base 64 y input text area */}
-            <input type="text" name="image" value={input.image} onChange={handleChange}/>
+            <input type="text" name="image" value={input.image} onChange={handleChange} autoComplete="off"/>
             {boolean && errors.image ? <span className={styles.msgErrors}>{errors.image}</span>:null}
 
           </div>
