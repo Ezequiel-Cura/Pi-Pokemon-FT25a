@@ -16,8 +16,8 @@ const initialState = {
   pokemons : [],
   filteredPokemons:[],
   poke : {},
-  types:[]
-  
+  types:[],
+  allPokemons: []
 };
 
 
@@ -27,7 +27,8 @@ const rootReducer = (state = initialState,action)=> {
       return {
         ...state,
         pokemons: action.payload,
-        filteredPokemons: action.payload
+        filteredPokemons: action.payload,
+        allPokemons:action.payload
       }
     case GET_POKEMON:
       return{

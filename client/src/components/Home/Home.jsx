@@ -15,7 +15,7 @@ export default function Home() {
   const pokePerPage = 12;
   const currentTypes = useSelector(state=> state.types)
   let filteredPoke = useSelector(state=> state.filteredPokemons)
-  
+  const allPokemons = useSelector(state=> state.allPokemons)
   const [filtersValue, setFiltersValue] = useState({
     ABC: "default",
     Api_Db : "All",
@@ -23,9 +23,9 @@ export default function Home() {
   })
 
   useEffect(()=>{
-    // if(!filteredPoke.length){
-    dispatch(getAllPokemons())
-    // }
+    if(!allPokemons.length){
+      dispatch(getAllPokemons())
+    }
     dispatch(getTypes())
   },[dispatch])//eslint-disable-line
 

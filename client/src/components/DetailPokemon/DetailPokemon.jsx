@@ -42,7 +42,7 @@ export default function DetailPokemon() {
   }
   useEffect(()=>{
     dispatch(getPokemon(id))
-    dispatch(getAllPokemons())
+    // dispatch(getAllPokemons())
     dispatch(getTypes())
   },[dispatch,id])
   useEffect(()=>{
