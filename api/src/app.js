@@ -14,8 +14,21 @@ server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
+
+
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin',["https://pi-pokemon-ft-25a.vercel.app","https://pi-pokemon-ft-25a-git-main-ezequiel-cura.vercel.app","https://pi-pokemon-ft-25a-7zvev9r1l-ezequiel-cura.vercel.app"]); // update to match the domain you will make the request from
+  const allowedOrigins = [
+    "https://pi-pokemon-ft-25a.vercel.app",
+    "https://pi-pokemon-ft-25a-git-main-ezequiel-cura.vercel.app",
+    "https://pi-pokemon-ft-25a-7zvev9r1l-ezequiel-cura.vercel.app"
+  ];
+
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  // res.header('Access-Control-Allow-Origin',["https://pi-pokemon-ft-25a.vercel.app","https://pi-pokemon-ft-25a-git-main-ezequiel-cura.vercel.app","https://pi-pokemon-ft-25a-7zvev9r1l-ezequiel-cura.vercel.app"]); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
